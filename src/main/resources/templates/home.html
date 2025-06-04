@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head th:replace="fragments/head :: head('Página Inicial')"></head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <main class="home-container">
+        <h1>Bem-vindo ao Sistema!</h1>
+        <p>Você está logado com sucesso.</p>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

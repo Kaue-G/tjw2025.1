@@ -1,0 +1,54 @@
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #145a99;
+}
+
+.btn.small {
+    padding: 6px 10px;
+    font-size: 0.9em;
+}
+
+.btn.danger {
+    background-color: #e53935;
+}
+
+.btn.danger:hover {
+    background-color: #c62828;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}

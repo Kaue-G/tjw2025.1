@@ -6,16 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Telefone {
+public class Phone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String numero;
+	private String phNumber;
 	
 	private Boolean isWpp;
 	
-	private Boolean isPrincipal;
+	private Boolean isMain;
 
 	public Long getId() {
 		return id;
@@ -25,12 +25,12 @@ public class Telefone {
 		this.id = id;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getPhNumber() {
+		return phNumber;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setPhNumber(String phNumber) {
+		this.phNumber = phNumber;
 	}
 
 	public Boolean getIsWpp() {
@@ -41,12 +41,12 @@ public class Telefone {
 		this.isWpp = isWpp;
 	}
 
-	public Boolean getIsPrincipal() {
-		return isPrincipal;
+	public Boolean getIsMain() {
+		return isMain;
 	}
 
-	public void setIsPrincipal(Boolean isPrincipal) {
-		this.isPrincipal = isPrincipal;
+	public void setIsMain(Boolean isMain) {
+		this.isMain = isMain;
 	}
 	
 }

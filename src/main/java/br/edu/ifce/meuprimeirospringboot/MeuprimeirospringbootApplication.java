@@ -8,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.edu.ifce.meuprimeirospringboot.beans.Endereco;
-import br.edu.ifce.meuprimeirospringboot.beans.Telefone;
-import br.edu.ifce.meuprimeirospringboot.beans.Usuario;
-import br.edu.ifce.meuprimeirospringboot.enums.Raca;
-import br.edu.ifce.meuprimeirospringboot.repository.UsuarioRepository;
+import br.edu.ifce.meuprimeirospringboot.beans.Address;
+import br.edu.ifce.meuprimeirospringboot.beans.Phone;
+import br.edu.ifce.meuprimeirospringboot.beans.User;
+import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
+import br.edu.ifce.meuprimeirospringboot.repository.UserRepository;
 
 @SpringBootApplication
 public class MeuprimeirospringbootApplication implements CommandLineRunner  {
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
+	private UserRepository userRepository;
+	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MeuprimeirospringbootApplication.class, args);
@@ -28,37 +29,34 @@ public class MeuprimeirospringbootApplication implements CommandLineRunner  {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Usuario u = new Usuario();
+		User u = new User();
 		u.setCpf("00000000000");
-		u.setNome("Fulano de Tal");
+		u.setName("Fulano de Tal");
 		u.setEmail("fulano@gmail.com");
-		u.setRaca(Raca.Indígena);
-		u.setDtNascimento(new Date());
+		u.setEthnicity(Ethnicity.Indígena);
+		u.setDtBirth(new Date());
+		u.setPassword(passwordEncoder.encode("123"));
 		
-		Endereco e = new Endereco();
-		e.setBairro("Jereissati");
-		e.setCep("60000-000");
-		e.setLogradouro("Rua I");
-		e.setNumero("777");
+		Address e = new Address();
+		e.setNeighborhood("Jereissati");
+		e.setZipCode("60000-000");
+		e.setStreet("Rua I");
+		e.setNumber("777");
 		
-		List<Telefone> l = new ArrayList<Telefone>();
-		Telefone t1 = new Telefone();
-		t1.setNumero("9999-9999");
-		t1.setIsPrincipal(true);
+		List<Phone> l = new ArrayList<Phone>();
+		Phone t1 = new Phone();
+		t1.setPhNumber("9999-9999");
+		t1.setIsMain(true);
 		t1.setIsWpp(true);
 		l.add(t1);
 			
-		u.setEndereco(e);
+		u.setAddress(e);
 		u.setTelefones(l);
 	
-		usuarioRepository.save(u);
+		userRepository.save(u);
 
-		
-		Long n =  usuarioRepository.count();
+		Long n =  userRepository.count();
 		System.out.println(n);
-		
-		
-		
 		
 	}
 

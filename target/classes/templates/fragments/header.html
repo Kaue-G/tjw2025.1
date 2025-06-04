@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="header">
+    <header class="main-header">
+        <h2>Sistema Acadêmico</h2>
+        <nav>
+			<a th:href="@{/home}">Home</a>
+            <a th:href="@{/admin/users}">Usuários</a>
+            <a th:href="@{/logout}">Sair</a>
+        </nav>
+    </header>
+</body>
+</html>
