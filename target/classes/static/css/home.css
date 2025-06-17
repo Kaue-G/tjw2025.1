@@ -1,0 +1,20 @@
+/* Estilizando a section */
+section {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    padding: 30px; /* Maior espaçamento interno */
+    width: 80%; /* Largura de 80% da tela */
+    max-width: 600px; /* Máxima largura de 600px */
+    text-align: center; /* Alinha o texto ao centro */
+    margin: 20px auto; /* Centraliza a section com margem automática */
+    transition: transform 0.3s ease-in-out; /* Transição suave para efeito hover */
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 600px) {
+    section {
+        width: 90%; /* Usar mais espaço em telas pequenas */
+        padding: 20px; /* Menos padding em telas pequenas */
+    }
+}

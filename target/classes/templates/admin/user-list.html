@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
-<head th:replace="fragments/head :: head('Gerenciar Usuários')">
-	<link rel="stylesheet" th:href="@{/css/user-list.css}">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+	<title>User List</title>
+	<div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/user-list.css}">
+    </div>
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+    <section layout:fragment="content">
+        <h1>Usuários Cadastrados</h1>
 
-<main class="container">
-    <h1>Usuários Cadastrados</h1>
+        <a class="btn-newUser" th:href="@{/admin/users/create}">Novo Usuário</a>
 
-    <a class="btn" th:href="@{/admin/users/create}">Novo Usuário</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>CPF</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.name}">Nome</td>
-                <td th:text="${user.email}">Email</td>
-                <td th:text="${user.cpf}">CPF</td>
-                <td>
-                    <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn small">Editar</a>
-                    <form th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post" style="display:inline">
-                        <button type="submit" class="btn small danger">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</main>
-
-<div th:replace="fragments/footer :: footer"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}">Nome</td>
+                    <td th:text="${user.email}">Email</td>
+                    <td th:text="${user.cpf}">CPF</td>
+                    <td>
+                        <a th:href="@{'/admin/users/edit/' + ${user.id}}" class="btn small">Editar</a>
+                        <form th:action="@{'/admin/users/delete/' + ${user.id}}" method="post" style="display:inline">
+                            <button type="submit" class="btn small danger">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>

@@ -2,26 +2,189 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.main-header, .main-footer {
+section {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+	width: 100%;
+}
+
+/* Responsividade do conteúdo principal */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+/* Estilo do Header */
+.main-header {
     background-color: #1976d2;
     color: white;
-    padding: 15px;
+    padding: 20px 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
-.main-header nav a {
+.main-header h2 {
+    font-size: 24px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.main-header nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.main-header nav a, .main-header nav button {
     color: #fff;
-    margin: 0 10px;
     text-decoration: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.main-header nav a:hover {
-    text-decoration: underline;
+.main-header nav a:hover, .main-header nav button:hover  {
+    background-color: #1565c0;
+    color: #fff;
 }
 
-.home-container {
-    padding: 40px;
+/* Responsividade para header */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-header nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Estilo do Footer */
+.main-footer {
+    background-color: #1976d2;
+    color: white;
     text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
+
+.main-footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Responsividade para footer */
+@media (max-width: 768px) {
+    .main-footer p {
+        font-size: 12px;
+    }
+}
+
+/* Reset básico de estilo para garantir que todos os navegadores comecem do mesmo ponto */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif; /* Altere conforme necessário */
+    line-height: 1.5;
+}
+
+/* Removendo bordas e contornos nos elementos */
+button, input, select, textarea {
+    border: none;
+    outline: none;
+    background: none;
+    font: inherit;
+}
+
+/* Remover listas de estilo */
+ul, ol {
+    list-style: none;
+}
+
+/* Remover quebras de linha adicionais em alguns elementos */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+}
+
+/* Definindo fundo da página como branco por padrão */
+body {
+    background-color: #fff;
+}
+
+/* Definir links como texto simples sem sublinhado */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Evitar que imagens quebrem o layout */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Garantir que o conteúdo de tabelas se ajuste bem */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+/* Definir um tamanho mínimo para inputs e botões */
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    padding: 0.5em;
+}
+
+/* Estilo para campos de entrada e botões */
+button {
+    cursor: pointer;
+}
+
+/* Para evitar o comportamento de scroll em elementos com overflow */
+html {
+    overflow-x: hidden;
+}
+
+

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Título da Página')"></head>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="fragments/head :: head('Título da Página')">
+	<div layout:fragment="styles"></div>
+</head>
 <body>
+	
     <div th:replace="fragments/header :: header"></div>
 
-    <main class="container">
+    <main class="container" layout:fragment="content">
         <div th:replace="${content}"></div>
     </main>
 

@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
 
         if (dto.getId() == null) {
             user.setPassword(encoder.encode("123456")); // senha padrão
-        }
+        } else if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            user.setPassword(encoder.encode(dto.getPassword()));
+        }        
 
         userRepository.save(user);
 	}

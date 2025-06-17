@@ -1,16 +1,66 @@
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
+a.btn-newUser {
+	display: inline-block;
+	 padding: 12px 20px;
+	 background-color: #28a745; /* verde */
+	 color: white;
+	 font-size: 16px;
+	 font-weight: bold;
+	 text-align: center;
+	 text-decoration: none;
+	 border-radius: 5px;
+	 transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-h1 {
-    margin-bottom: 20px;
+a.btn-newUser:hover {
+	background-color: #218838;
+	 transform: scale(1.05);
 }
 
-.btn {
+a.btn-newUser:active {
+	background-color: #1e7e34;
+	transform: scale(1);
+}
+
+/* Estilos para a Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaçamento entre as células */
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave para a tabela */
+    border-radius: 8px; /* Cantos arredondados para a tabela */
+    overflow: hidden; /* Evita que as bordas arredondadas se quebrem */
+}
+
+/* Cabeçalho da Tabela */
+table th {
+    background-color: #1976d2; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto */
+    padding: 12px 15px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento à esquerda */
+    font-weight: bold; /* Deixa o texto em negrito */
+    text-transform: uppercase; /* Deixa os textos em maiúsculo */
+    letter-spacing: 1px; /* Um pouco de espaçamento entre as letras */
+}
+
+/* Linhas da Tabela */
+table td {
+    padding: 12px 15px; /* Espaçamento nas células */
+    border-bottom: 1px solid #ddd; /* Linha de separação entre as células */
+    color: #333; /* Cor de texto */
+}
+
+/* Linhas alternadas - Fundo diferente para facilitar a leitura */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Efeito de hover nas linhas */
+tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo quando o usuário passar o mouse */
+}
+
+/* Estilo do botão dentro da tabela */
+td a, td button {
     display: inline-block;
     padding: 8px 16px;
     background-color: #1976d2;
@@ -18,37 +68,47 @@ h1 {
     text-decoration: none;
     border-radius: 5px;
     margin: 5px 0;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #145a99;
+/* Efeito hover nos botões */
+td a:hover, td button:hover {
+    background-color: #145a99; /* Cor de fundo quando o botão for pressionado */
+    transform: translateY(-2px); /* Elevação suave */
 }
 
-.btn.small {
-    padding: 6px 10px;
-    font-size: 0.9em;
-}
-
-.btn.danger {
+/* Estilo para o botão de excluir (danger) */
+td button.danger {
     background-color: #e53935;
 }
 
-.btn.danger:hover {
-    background-color: #c62828;
+td button.danger:hover {
+    background-color: #c62828; /* Cor mais escura ao passar o mouse */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+/* Responsividade - Melhorando a tabela em telas menores */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px; /* Tamanho da fonte um pouco menor */
+    }
+
+    table th, table td {
+        padding: 10px; /* Menos espaçamento nas células */
+    }
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
+@media (max-width: 480px) {
+    table th, table td {
+        padding: 8px; /* Menos espaçamento nas células para telas muito pequenas */
+    }
 
-th, td {
-    padding: 12px;
-    text-align: left;
+    table {
+        font-size: 12px; /* Menor tamanho de fonte */
+    }
+
+    td a, td button {
+        font-size: 12px; /* Botões menores em telas pequenas */
+        padding: 6px 12px; /* Menor padding */
+    }
 }
