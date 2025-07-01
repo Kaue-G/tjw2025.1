@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.edu.ifce.meuprimeirospringboot.beans.Role;
 import br.edu.ifce.meuprimeirospringboot.beans.User;
+import br.edu.ifce.meuprimeirospringboot.config.RoleNameMapper;
 import br.edu.ifce.meuprimeirospringboot.dto.CpfDTO;
 import br.edu.ifce.meuprimeirospringboot.dto.UserDTO;
 import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
+import br.edu.ifce.meuprimeirospringboot.repository.RoleRepository;
 import br.edu.ifce.meuprimeirospringboot.service.UserService;
 
 @Controller
@@ -27,6 +30,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	// @RequestParam --> GET /usuario?cpf=12345678900
 	// @RequestBody --> GET /usuario/12345678900 @GetMapping("/usuario/{cpf}")
@@ -63,9 +68,12 @@ public class UserController {
 	@GetMapping("/create")
     public String form( Model model) {
         UserDTO user = new UserDTO(); 
+        List<Role> roles = roleRepository.findAll();
         
         model.addAttribute("user", user);
         model.addAttribute("ethnicities", Ethnicity.values());
+        model.addAttribute("allRoles", roles);
+        model.addAttribute("roleNames", RoleNameMapper.getRoleDisplayNames()); 
         
         return "admin/form";
     }
@@ -76,6 +84,8 @@ public class UserController {
         
         model.addAttribute("user", user);
         model.addAttribute("ethnicities", Ethnicity.values());
+        model.addAttribute("allRoles", roleRepository.findAll());
+        model.addAttribute("roleNames", RoleNameMapper.getRoleDisplayNames());
         
         return "admin/form";  
     }

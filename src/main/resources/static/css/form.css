@@ -39,3 +39,46 @@ form input {
 .danger:hover {
 	background-color: #c62828;
 }
+
+#checkbox-roles{
+	display: flex;	
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;           /* permite quebra de linha */
+    gap: 12px;                 /* espaçamento entre os itens */
+    margin-bottom: 16px;
+    min-width: 200px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background-color: #f0f8ff;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    color: #0056b3;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+	width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+    flex-shrink: 0;              /* evita encolher demais */
+    min-width: 160px;            /* largura mínima para consistência */
+}
+
+.checkbox-label:hover {
+    background-color: #e0f0ff;
+}
+
+.checkbox-label input[type="checkbox"] {
+	width: 30px;
+    accent-color: #007bff;
+    transform: scale(1.15);
+}

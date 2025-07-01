@@ -1,6 +1,8 @@
 package br.edu.ifce.meuprimeirospringboot.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
 
@@ -11,7 +13,7 @@ public class UserDTO {
 	private String cpf;
     private Date dtBirth;
     private Ethnicity ethnicity;
-    private String role;
+    private Set<String> roles = new HashSet<>();
     private String password;
     
     public String getCpf() {
@@ -44,11 +46,11 @@ public class UserDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRole() {
-		return role;
+	public Set<String> getRoles() {
+		return roles;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(Set<String> roles) {
+		this.roles = roles;
 	}
 	public String getEmail() {
 		return email;

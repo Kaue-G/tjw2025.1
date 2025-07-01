@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -29,7 +30,20 @@
 	            <label for="cpf">CPF:</label>
 	            <input type="text" id="cpf" th:field="*{cpf}" required>
 	        </div>
-	
+			
+			<div>
+			    <label>Perfis (roles):</label>
+				<div id="checkbox-roles">
+				    <div class="checkbox-group" th:each="role : ${allRoles}">
+				        <label class="checkbox-label">
+				            <input type="checkbox" name="roles" th:value="${role.name}" 
+				                   th:checked="${#lists.contains(user.roles, role.name)}" />
+				            <span th:text="${roleNames[role.name]} ?: ${role.name}">ROLE_NAME</span>
+				        </label>
+				    </div>
+				</div>
+			</div>
+			
 	        <div>
 	            <label for="password">Senha:</label>
 				<input type="password" th:field="*{password}" placeholder="Deixe em branco para manter" />

@@ -2,6 +2,7 @@ package br.edu.ifce.meuprimeirospringboot.beans;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
 import jakarta.persistence.CascadeType;
@@ -9,10 +10,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -59,7 +62,13 @@ public class User {
 	@ManyToMany
 	private List<Subject> subjects;
 	
-	private String role;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+		name = "user_roles",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles;
 	
 	public Long getId() {
 		return id;
@@ -127,11 +136,11 @@ public class User {
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}
-	public String getRole() {
-		return role;
+	public Set<Role> getRoles() {
+		return roles;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 	
 }

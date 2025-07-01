@@ -1,15 +1,18 @@
 package br.edu.ifce.meuprimeirospringboot.serviceImpl;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.edu.ifce.meuprimeirospringboot.beans.Role;
 import br.edu.ifce.meuprimeirospringboot.beans.User;
 import br.edu.ifce.meuprimeirospringboot.dto.UserDTO;
 import br.edu.ifce.meuprimeirospringboot.exceptions.UserNotFoundException;
+import br.edu.ifce.meuprimeirospringboot.repository.RoleRepository;
 import br.edu.ifce.meuprimeirospringboot.repository.UserRepository;
 import br.edu.ifce.meuprimeirospringboot.service.UserService;
 
@@ -19,6 +22,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+    
+    @Autowired
+    private RoleRepository roleRepository;
     
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
@@ -33,14 +39,21 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(UserDTO dto) {
-		User user = dto.getId() != null ? userRepository.findById(dto.getId()).orElse(new User()) : new User();
+		User user = dto.getId() != null 
+				? userRepository.findById(dto.getId()).orElse(new User()) 
+				: new User();
         
 		user.setName(dto.getName());
         user.setEmail(dto.getEmail());
         user.setCpf(dto.getCpf());
         user.setDtBirth(dto.getDtBirth());
         user.setEthnicity(dto.getEthnicity());
-        user.setRole(dto.getRole());
+        
+        Set<Role> roles = dto.getRoles().stream()
+                .map(name -> roleRepository.findByName(name)
+                    .orElseThrow(() -> new RuntimeException("Role não encontrada: " + name)))
+                .collect(Collectors.toSet());
+        user.setRoles(roles);
 
         if (dto.getId() == null) {
             user.setPassword(encoder.encode("123456")); // senha padrão
@@ -91,7 +104,13 @@ public class UserServiceImpl implements UserService {
         dto.setCpf(user.getCpf());
         dto.setDtBirth(user.getDtBirth());
         dto.setEthnicity(user.getEthnicity());
-        dto.setRole(user.getRole());
+        
+        Set<String> roleNames = user.getRoles().stream()
+                .map(Role::getName)
+                .collect(Collectors.toSet());
+        
+        dto.setRoles(roleNames);
+        
         return dto;
     }
 }
