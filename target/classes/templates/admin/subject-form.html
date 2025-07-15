@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Subject Form</title>
+    <div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/subject-form.css}">
+    </div>
+</head>
+<body>
+    <section layout:fragment="content">
+        <h1 th:text="${subject.id == null ? 'Nova Disciplina' : 'Editar Disciplina'}"></h1>
+
+        <form th:action="@{/admin/disciplinas/save}" th:object="${subject}" method="post">
+            <div>
+                <input type="hidden" th:field="*{id}"/>
+            </div>
+
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" th:field="*{name}" placeholder="Nome da Disciplina"/>
+            </div>
+
+            <div>
+                <label for="year">Ano:</label>
+                <input type="text" th:field="*{year}" placeholder="Ano da Disciplina"/>
+            </div>
+
+            <div>
+                <label for="period">Período:</label>
+                <input type="text" th:field="*{period}" placeholder="Período"/>
+            </div>>
+
+            <div>
+                <button type="submit" class="btn-form">Salvar</button>
+            </div>
+        </form>
+
+        <a href="/admin/disciplinas" class="btn-form danger">Voltar</a>
+    </section>
+</body>
+</html>

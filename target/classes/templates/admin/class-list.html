@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Subject Form</title>
+    <div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/class-list.css}">
+    </div>
+</head>
+<body>
+    <section layout:fragment="content">
+		<h1>Turmas Cadastradas</h1>
+		
+		<a class="btn-newClass" href="/admin/turmas/create">Nova Turma</a>
+		<table>
+		    <thead>
+		        <tr>
+		            <th>Disciplina</th>
+		            <th>Professor</th>
+		            <th>Semestre</th>
+		            <th>Sala</th>
+		            <th>Ações</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr th:each="class : ${classes}">
+		            <td th:text="${class.subjectName}"></td>
+		            <td th:text="${class.teacherName}"></td>
+		            <td th:text="${class.semester}"></td>
+		            <td th:text="${class.room}"></td>
+		            <td>
+		                <a th:href="@{/admin/turmas/editar/{id}(id=${class.id})}">Editar</a>
+		                <a th:href="@{/admin/turmas/excluir/{id}(id=${class.id})}">Excluir</a>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+    </section>
+</body>
+</html>

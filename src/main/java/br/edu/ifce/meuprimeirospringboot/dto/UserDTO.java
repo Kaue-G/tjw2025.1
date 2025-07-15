@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
+import br.edu.ifce.meuprimeirospringboot.enums.RoleName;
 
 public class UserDTO {
 	private Long id;
@@ -13,7 +14,7 @@ public class UserDTO {
 	private String cpf;
     private Date dtBirth;
     private Ethnicity ethnicity;
-    private Set<String> roles = new HashSet<>();
+    private Set<RoleName> roles = new HashSet<>();
     private String password;
     
     public String getCpf() {
@@ -46,10 +47,10 @@ public class UserDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Set<String> getRoles() {
+	public Set<RoleName> getRoles() {
 		return roles;
 	}
-	public void setRoles(Set<String> roles) {
+	public void setRoles(Set<RoleName> roles) {
 		this.roles = roles;
 	}
 	public String getEmail() {

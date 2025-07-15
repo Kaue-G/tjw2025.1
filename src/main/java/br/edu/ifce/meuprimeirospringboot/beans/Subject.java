@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -21,10 +23,13 @@ public class Subject {
 	
 	private String name;
 	
-	private String teacher;
-	
-	@ManyToMany(mappedBy = "subjects")
-	private List<User> students;
+	@ManyToMany
+	@JoinTable(
+        name = "subject_users",
+        joinColumns = @JoinColumn(name = "subject_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+	private List<User> users;
 
 	public Long getId() {
 		return id;
@@ -58,19 +63,11 @@ public class Subject {
 		this.name = name;
 	}
 
-	public String getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
-	}
-
 	public List<User> getStudents() {
-		return students;
+		return users;
 	}
 
-	public void setStudents(List<User> students) {
-		this.students = students;
+	public void setStudents(List<User> users) {
+		this.users = users;
 	}
 }

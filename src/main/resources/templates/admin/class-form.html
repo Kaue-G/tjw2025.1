@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Subject Form</title>
+    <div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/class-form.css}">
+    </div>
+</head>
+<body>
+    <section layout:fragment="content">
+		<h1 th:text="${classDTO.id == null ? 'Nova Turma' : 'Editar Turma'}"></h1>
+		
+		<form id="classForm" th:action="@{/admin/turmas/salvar}" th:object="${classDTO}" method="post">
+		    <input type="hidden" th:field="*{id}"/>
+
+		    <label>Disciplina:</label>
+		    <select th:field="*{subjectId}" required>
+		        <option th:each="s : ${subjects}" th:value="${s.id}" th:text="${s.name}"></option>
+		    </select>
+
+		    <label>Professor:</label>
+		    <select th:field="*{teacherId}" required>
+		        <option th:each="p : ${teachers}" th:value="${p.id}" th:text="${p.name}"></option>
+		    </select>
+
+		    <label>Semestre:</label>
+		    <input type="text" th:field="*{semester}" placeholder="Ex: 2025.1"/>
+
+		    <label>Sala:</label>
+		    <input type="text" th:field="*{room}" placeholder="Ex: A01"/>
+
+		    <button id="classBtn-form" type="submit">Salvar</button>
+		</form>
+
+		<a href="/turmas">Voltar</a>
+    </section>
+</body>
+</html>

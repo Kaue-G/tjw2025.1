@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.edu.ifce.meuprimeirospringboot.beans.Role;
 import br.edu.ifce.meuprimeirospringboot.beans.User;
 import br.edu.ifce.meuprimeirospringboot.dto.UserDTO;
+import br.edu.ifce.meuprimeirospringboot.enums.RoleName;
 import br.edu.ifce.meuprimeirospringboot.exceptions.UserNotFoundException;
 import br.edu.ifce.meuprimeirospringboot.repository.RoleRepository;
 import br.edu.ifce.meuprimeirospringboot.repository.UserRepository;
@@ -50,8 +51,8 @@ public class UserServiceImpl implements UserService {
         user.setEthnicity(dto.getEthnicity());
         
         Set<Role> roles = dto.getRoles().stream()
-                .map(name -> roleRepository.findByName(name)
-                    .orElseThrow(() -> new RuntimeException("Role não encontrada: " + name)))
+                .map(roleName -> roleRepository.findByName(roleName)
+                    .orElseThrow(() -> new RuntimeException("Role não encontrada: " + roleName)))
                 .collect(Collectors.toSet());
         user.setRoles(roles);
 
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService {
 		User existente = userRepository.findById(id)
 	            .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
 
-	        existente.setName(updatedUser.getNome());
+	        existente.setName(updatedUser.getName());
 	        existente.setEmail(updatedUser.getEmail());
 	        existente.setCpf(updatedUser.getCpf());
 	        existente.setDtBirth(updatedUser.getDtBirth());
@@ -95,17 +96,22 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Long id) {
     	userRepository.deleteById(id);
     }
+    
+    @Override
+	public List<UserDTO> findByRole(RoleName roleName) {
+		return userRepository.findByRoleName(roleName).stream().map(this::toDTO).collect(Collectors.toList());
+	}
 
     private UserDTO toDTO(User user) {
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
-        dto.setName(user.getNome());
+        dto.setName(user.getName());
         dto.setEmail(user.getEmail());
         dto.setCpf(user.getCpf());
         dto.setDtBirth(user.getDtBirth());
         dto.setEthnicity(user.getEthnicity());
         
-        Set<String> roleNames = user.getRoles().stream()
+        Set<RoleName> roleNames = user.getRoles().stream()
                 .map(Role::getName)
                 .collect(Collectors.toSet());
         

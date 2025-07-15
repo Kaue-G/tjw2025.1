@@ -2,8 +2,11 @@ package br.edu.ifce.meuprimeirospringboot.beans;
 
 import java.util.Set;
 
+import br.edu.ifce.meuprimeirospringboot.enums.RoleName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,8 +20,9 @@ public class Role {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, unique = true)
-	private String name; 
+	private RoleName name; 
 	
 	@ManyToMany(mappedBy = "roles")
 	private Set<User> users;
@@ -31,12 +35,12 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getName() {
+	public RoleName getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(RoleName role) {
+		this.name = role;
 	}
 
 	public Set<User> getUsers() {

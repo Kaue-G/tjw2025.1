@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Subject Form</title>
+    <div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/registration-list.css}">
+    </div>
+</head>
+<body>
+	<section layout:fragment="content" id="registrationPage">
+		<h1>Lista de Matrículas</h1>
+
+       <div th:if="${mensagem}" class="alert alert-success" th:text="${mensagem}"></div>
+
+       <a href="/admin/matriculas/create" class="nova-matricula">Nova Matrícula</a>
+
+       <table>
+           <thead>
+               <tr>
+                   <th>Aluno</th>
+                   <th>Turma</th>
+                   <th>Disciplina</th>
+                   <th>Professor</th>
+                   <th>Data</th>
+                   <th>Status</th>
+                   <th>Ações</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr th:each="r : ${registrations}">
+                   <td th:text="${r.studentName}"></td>
+                   <td th:text="${r.classId}"></td>
+                   <td th:text="${r.registrationSubject}"></td>
+                   <td th:text="${r.registrationTeacher}"></td>
+                   <td th:text="${r.registrationDateFormatted}"></td>
+                   <td th:text="${r.active ? 'Ativa' : 'Cancelada'}"></td>
+                   <td class="acoes">
+                       <a th:href="@{/admin/matriculas/editar/{id}(id=${r.id})}">Editar</a>
+                       <a th:href="@{/admin/matriculas/cancelar/{id}(id=${r.id})}"
+                          th:onclick="return confirm('Deseja cancelar esta matrícula?')">Cancelar</a>
+                   </td>
+               </tr>
+           </tbody>
+       </table>
+    </section>
+</body>
+</html>

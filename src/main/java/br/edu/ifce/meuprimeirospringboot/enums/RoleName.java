@@ -1,0 +1,7 @@
+package br.edu.ifce.meuprimeirospringboot.enums;
+
+public enum RoleName {
+	ROLE_ADMIN,
+	ROLE_USER,
+	ROLE_TEACHER
+}

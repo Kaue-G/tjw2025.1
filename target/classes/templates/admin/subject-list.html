@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Subject List</title>
+    <div layout:fragment="styles">
+        <link rel="stylesheet" th:href="@{/css/subject-list.css}">
+    </div>
+</head>
+<body>
+    <section layout:fragment="content">
+        <h1>Disciplinas Cadastradas</h1>
+        
+        <a class="btn-newSubject" href="/admin/disciplinas/create">Nova Disciplina</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Ano</th>
+                    <th>Período</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="subject : ${subjects}">
+                    <td th:text="${subject.name}"></td>
+                    <td th:text="${subject.year}"></td>
+                    <td th:text="${subject.period}"></td>
+                    <td>
+                        <a class="btn-edit" th:href="@{/admin/disciplinas/editar/{id}(id=${subject.id})}">Editar</a>
+                        <a class="btn-delete danger" th:href="@{/admin/disciplinas/excluir/{id}(id=${subject.id})}">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

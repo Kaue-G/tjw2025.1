@@ -3,9 +3,13 @@
     <header class="main-header">
         <h2>Sistema Acadêmico</h2>
         <nav>
-            <a th:href="@{/home}">Home</a>
-            <a th:href="@{/admin/users}">Usuários</a>
-            
+            <a  th:href="@{/home}">Home</a>
+            <a  th:if="${#lists.contains(roles, 'ROLE_ADMIN')}"
+				th:href="@{/admin/users}">Usuários</a>
+			<a th:href="@{/admin/disciplinas}">Disciplinas</a>
+			<a th:href="@{/admin/turmas}">Turmas</a>
+			<a th:href="@{/admin/matriculas}">Matriculas</a>
+				
             <!-- Formulário de logout -->
             <form th:action="@{/logout}" method="post" style="display:inline;">
                 <button type="submit">Sair</button>

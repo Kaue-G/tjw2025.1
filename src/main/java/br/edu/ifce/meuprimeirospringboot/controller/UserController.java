@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ifce.meuprimeirospringboot.beans.Role;
 import br.edu.ifce.meuprimeirospringboot.beans.User;
-import br.edu.ifce.meuprimeirospringboot.config.RoleNameMapper;
 import br.edu.ifce.meuprimeirospringboot.dto.CpfDTO;
 import br.edu.ifce.meuprimeirospringboot.dto.UserDTO;
 import br.edu.ifce.meuprimeirospringboot.enums.Ethnicity;
 import br.edu.ifce.meuprimeirospringboot.repository.RoleRepository;
 import br.edu.ifce.meuprimeirospringboot.service.UserService;
+import br.edu.ifce.meuprimeirospringboot.util.RoleNameMapper;
 
 @Controller
 @RequestMapping("/admin/users")
@@ -42,6 +41,7 @@ public class UserController {
 		List<UserDTO> users = userService.findAll();
 		
 		model.addAttribute("users", users);
+		
         return "admin/user-list";
     }
 	

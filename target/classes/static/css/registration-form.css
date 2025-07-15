@@ -1,0 +1,156 @@
+/* Estilos Gerais para o Formulário de Matrícula */
+#registrationForm {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Título */
+#registrationFormTitle {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Estilos para cada grupo de campo */
+#registrationForm .form-group {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+#registrationForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Campos de input e select */
+#registrationForm input[type="text"],
+#registrationForm input[type="number"],
+#registrationForm input[type="checkbox"],
+#registrationForm select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+/* Checkbox layout */
+#registrationForm .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#registrationForm .checkbox-group label {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* Foco */
+#registrationForm input:focus,
+#registrationForm select:focus {
+    border-color: #1976d2;
+    outline: none;
+    background-color: #e9f1fb;
+}
+
+/* Botão */
+#registrationForm button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+#registrationForm button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#registrationForm button:active {
+    background-color: #1e7e34;
+}
+
+/* Link de voltar */
+#registrationForm a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #1976d2;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#registrationForm a:hover {
+    color: #145a99;
+}
+
+/* Estilo para separar visualmente as matrículas (linhas da tabela) */
+#registrationPage tbody tr {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 12px;
+    display: table-row;
+    transition: box-shadow 0.3s;
+}
+
+#registrationPage tbody tr:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #registrationForm {
+        padding: 15px;
+    }
+
+    #registrationForm input,
+    #registrationForm select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #registrationForm button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #registrationForm {
+        padding: 10px;
+    }
+
+    #registrationForm input,
+    #registrationForm select {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    #registrationForm button {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    #registrationForm a {
+        font-size: 14px;
+    }
+}

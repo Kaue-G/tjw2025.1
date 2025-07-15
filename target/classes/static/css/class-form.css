@@ -1,0 +1,119 @@
+/* Estilos Gerais para o Formulário */
+#classForm {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para cada 'div' no formulário */
+#classForm div {
+    margin-bottom: 20px;
+}
+
+/* Estilo para o label do formulário */
+#classForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Estilo para os campos de entrada de texto (input) */
+#classForm input, #classForm select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+/* Foco nos campos de input/select */
+#classForm input:focus, #classForm select:focus {
+    border-color: #1976d2;
+    outline: none;
+    background-color: #e9f1fb;
+}
+
+/* Estilo para o botão de envio */
+#classBtn-form {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+#classBtn-form:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#classBtn-form:active {
+    background-color: #1e7e34;
+    transform: scale(1);
+}
+
+/* Estilo do link "Voltar" */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #1976d2;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #145a99;
+}
+
+/* Responsividade - Formulário para telas menores */
+@media (max-width: 768px) {
+    #classForm {
+        padding: 15px;
+    }
+
+    #classForm input, #classForm select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #classBtn-form {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #classForm {
+        padding: 10px;
+    }
+
+    #classForm input, #classForm select {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    #classBtn-form {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    a {
+        font-size: 14px;
+    }
+}

@@ -59,7 +59,7 @@ public class User {
 	@Transient
 	private int age;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "users")
 	private List<Subject> subjects;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -76,7 +76,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
